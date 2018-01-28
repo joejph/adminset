@@ -14,7 +14,7 @@ ASSET_STATUS = (
 
 IP_STATUS = (
     (str(1), u""),
-    (str(2), u""),
+    (str(2), u"离线"),
 )
 
 ASSET_TYPE = (
