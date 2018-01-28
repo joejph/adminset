@@ -13,7 +13,7 @@ ASSET_STATUS = (
     )
 
 IP_STATUS = (
-    (str(1), u""),
+    (str(1), u"在线"),
     (str(2), u""),
 )
 
