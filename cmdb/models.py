@@ -12,6 +12,11 @@ ASSET_STATUS = (
     (str(4), u"其它"),
     )
 
+IP_STATUS = (
+    (str(1), u""),
+    (str(2), u""),
+)
+
 ASSET_TYPE = (
     (str(1), u"物理机"),
     (str(2), u"虚拟机"),
