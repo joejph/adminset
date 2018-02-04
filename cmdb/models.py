@@ -14,7 +14,7 @@ ASSET_STATUS = (
 
 IP_STATUS = (
     (str(1), u"在线"),
-    (str(2), u"离线 "),
+    (str(2), u"离线"),
 )
 
 ASSET_TYPE = (
@@ -22,7 +22,18 @@ ASSET_TYPE = (
     (str(2), u"虚拟机"),
     (str(3), u"容器"),
     (str(4), u"网络设备"),
-    (str(5), u"其他")
+    (str(5), u"其他"),
+    )
+
+IP_TYPE = (
+    (str(1), u"物理机"),
+    (str(2), u"虚拟机"),
+    (str(3), u"容器"),
+    (str(4), u"网络设备"),
+    (str(5), u"F5"),
+    (str(6), u"SCANIP"),
+    (str(7), u"DBVIP"),
+    (str(8), u"HAVIP")
     )
 
 
@@ -51,6 +62,17 @@ class Idc(models.Model):
         verbose_name = u'数据中心'
         verbose_name_plural = verbose_name
 
+class IPUsage(models.Model):
+    ip_addr = models.CharField(u"IP地址", max_length=16, null=True)
+    mac_addr = models.CharField(u"MAC地址", max_length=18, null=True)
+    status = models.CharField(u"状态", choices=IP_STATUS, max_length=10, null=True)
+    category = models.CharField(u"分类", choices=IP_TYPE, max_length=10, null=True)
+    hostname = models.CharField(u"主机名", max_length=30, null=True)
+    appname = models.CharField(u"系统名称", max_length=30, null=True)
+    appmodule = models.CharField(u"模块", max_length=30, null=True)
+
+    def __unicode__(self):
+        return self.name
 
 class HostGroup(models.Model):
     name = models.CharField(u"组名", max_length=30, unique=True)

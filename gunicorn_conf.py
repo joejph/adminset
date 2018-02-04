@@ -9,6 +9,8 @@ path_of_current_file = os.path.abspath(__file__)
 path_of_current_dir = os.path.split(path_of_current_file)[0]
 _file_name = os.path.basename(__file__)
 sys.path.insert(0, path_of_current_dir)
+import ptvsd
+ptvsd.enable_attach("my_secret", address=('0.0.0.0', 3000))
 
 
 worker_class = 'sync'
