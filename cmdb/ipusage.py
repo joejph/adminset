@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render
-from forms import IdcForm
-from .models import Idc
+from forms import IPUsageForm
+from .models import IPUsage
 from django.contrib.auth.decorators import login_required
 from accounts.permission import permission_verify
 
@@ -37,10 +37,11 @@ def idc_add(request):
 
 @login_required()
 @permission_verify()
-def idc_edit(request, ids):
-    obj = Idc.objects.get(id=ids)
-    allidc = Idc.objects.all()
-    return render(request, "cmdb/idc_edit.html", locals())
+def ipusage_edit(request, ids):
+    obj = IPUsage.objects.get(id=ids)
+    #allidc = IPUsage.objects.all()
+    ipu_form = IPUsageForm(instance=obj)
+    return render(request, "cmdb/ipusage_edit.html", locals())
 
 
 @login_required()

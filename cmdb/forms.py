@@ -4,7 +4,7 @@
 from django import forms
 from django.forms.widgets import *
 
-from .models import Host, Idc, HostGroup
+from .models import Host, Idc, HostGroup, IPUsage
 
 
 class AssetForm(forms.ModelForm):
@@ -71,6 +71,31 @@ class IdcForm(forms.ModelForm):
             'bandwidth': TextInput(attrs={'class': 'form-control','style': 'width:450px;'}),
         }
 
+class IPUsageForm(forms.ModelForm):
+
+    def clean(self):
+        cleaned_data = super(IPUsageForm, self).clean()
+        value = cleaned_data.get('name')
+        try:
+            IPUsage.objects.get(name=value)
+            self._errors['name'] = self.error_class(["%s的信息已经存在" % value])
+        except IPUsage.DoesNotExist:
+            pass
+        return cleaned_data
+
+    class Meta:
+        model = IPUsage
+        exclude = ("id",)
+
+        widgets = {
+            'ip_addr': TextInput(attrs={'class': 'form-control','style': 'width:450px;'}),
+            'mac_addr': TextInput(attrs={'class': 'form-control','style': 'width:450px;'}),
+            'status': TextInput(attrs={'class': 'form-control','style': 'width:450px;'}),
+            'category': TextInput(attrs={'class': 'form-control','style': 'width:450px;'}),
+            'hostname': TextInput(attrs={'class': 'form-control','style': 'width:450px;'}),
+            'appname': TextInput(attrs={'class': 'form-control','style': 'width:450px;'}),
+            'appmodule': TextInput(attrs={'class': 'form-control','style': 'width:450px;'}),
+        }
 
 class GroupForm(forms.ModelForm):
 

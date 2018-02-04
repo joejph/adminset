@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 from django.conf.urls import url, include
-from cmdb import api, idc, asset, group
+from cmdb import api, idc, asset, group, ipusage
 
 
 urlpatterns = [
@@ -15,6 +15,9 @@ urlpatterns = [
     url(r'^group/add/$', group.group_add, name='group_add'),
     url(r'^group/edit/(?P<ids>\d+)/$', group.group_edit, name='group_edit'),
     url(r'^group/save/$', group.group_save, name='group_save'),
+    url(r'^ipusage/$', ipusage.ipusage, name='ipusage'),
+    url(r'^ipusage/edit/(?P<ids>\d+)/$', ipusage.ipusage_edit, name='ipusage_edit'),
+    url(r'^ipusage/save/$', ipusage.ipusage_save, name='ipusage_save'),
     url(r'^idc/$', idc.idc, name='idc'),
     url(r'^idc/add/$', idc.idc_add, name='idc_add'),
     url(r'^idc/del/$', idc.idc_del, name='idc_del'),
