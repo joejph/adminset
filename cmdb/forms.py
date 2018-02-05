@@ -90,10 +90,10 @@ class IPUsageForm(forms.ModelForm):
         widgets = {
             'ip_addr': TextInput(attrs={'class': 'form-control','style': 'width:450px;'}),
             'mac_addr': TextInput(attrs={'class': 'form-control','style': 'width:450px;'}),
-            'status': TextInput(attrs={'class': 'form-control','style': 'width:450px;'}),
-            'category': TextInput(attrs={'class': 'form-control','style': 'width:450px;'}),
+            'status': Select(attrs={'class': 'form-control','style': 'width:450px;'}),
+            'category': Select(attrs={'class': 'form-control','style': 'width:450px;'}),
             'hostname': TextInput(attrs={'class': 'form-control','style': 'width:450px;'}),
-            'appname': TextInput(attrs={'class': 'form-control','style': 'width:450px;'}),
+            'appname': Select(attrs={'class': 'form-control','style': 'width:450px;'}),
             'appmodule': TextInput(attrs={'class': 'form-control','style': 'width:450px;'}),
         }
 

@@ -3,6 +3,7 @@
 
 from __future__ import unicode_literals
 from django.db import models
+#from appconf.models import Product
 
 
 ASSET_STATUS = (
@@ -63,12 +64,13 @@ class Idc(models.Model):
         verbose_name_plural = verbose_name
 
 class IPUsage(models.Model):
+    from appconf.models import Product
     ip_addr = models.CharField(u"IP地址", max_length=16, null=True)
     mac_addr = models.CharField(u"MAC地址", max_length=18, null=True)
     status = models.CharField(u"状态", choices=IP_STATUS, max_length=10, null=True)
     category = models.CharField(u"分类", choices=IP_TYPE, max_length=10, null=True)
     hostname = models.CharField(u"主机名", max_length=30, null=True)
-    appname = models.CharField(u"系统名称", max_length=30, null=True)
+    appname =  models.ForeignKey(Product, verbose_name=u"系统名称", on_delete=models.SET_NULL, null=True, blank=True)
     appmodule = models.CharField(u"模块", max_length=30, null=True)
 
     def __unicode__(self):
