@@ -6,7 +6,8 @@ from forms import IPUsageForm
 from .models import IPUsage
 from django.contrib.auth.decorators import login_required
 from accounts.permission import permission_verify
-
+from appconf.models import Product
+from cmdb.api import get_object
 
 @login_required()
 @permission_verify()
@@ -63,7 +64,7 @@ def ipusage_save(request):
         ipu_item.status = status
         ipu_item.category = category
         ipu_item.hostname = hostname
-        ipu_item.appname = appname
+        ipu_item.appname = get_object(Product, id=appname)
         ipu_item.appmodule = appmodule
         ipu_item.save()
         obj = ipu_item
